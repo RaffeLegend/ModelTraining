@@ -13,7 +13,9 @@ class ResModel(nn.Module):
 
         # self.model, self.preprocess = clip.load(name, device="cpu") # self.preprecess will not be used during training, which is handled in Dataset class 
         # self.fc = nn.Linear( CHANNELS[name], num_classes )
-        self.model = resnet50(pretrained=True)
+        
+        resnet = resnet50(pretrained=True)
+        self.model = nn.Sequential(*list(resnet.children())[:-2])
 
     def forward(self, x, return_feature=False):
         features = self.model.forward(x)
