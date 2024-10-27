@@ -8,7 +8,7 @@ CHANNELS = {
 }
 
 class ResModel(nn.Module):
-    def __init__(self, name, num_classes=1):
+    def __init__(self, num_classes=1):
         super(ResModel, self).__init__()
 
         # self.model, self.preprocess = clip.load(name, device="cpu") # self.preprecess will not be used during training, which is handled in Dataset class 
