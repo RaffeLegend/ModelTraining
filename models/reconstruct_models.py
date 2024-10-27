@@ -4,14 +4,17 @@ from models.resnet import resnet50
 # from .FreqFusion import FreqFusion
 from mmseg.models.decode_heads.ham_head import LightHamHead
 
-    
+CHANNELS = {
+    "RN50" : 1024,
+    "ViT-L/14" : 768
+}
 # Reconstruction branch using ResNet50
 class ReconstructionModel(nn.Module):
     def __init__(self):
         super(ReconstructionModel, self).__init__()
         
         # Load pre-trained ResNet50
-        head = LightHamHead()
+        head = LightHamHead(in_channels=CHANNELS["RN50"], channels=3)
         self.head = nn.Sequential(*list(head.children())[:-2])
         
     def forward(self, x):

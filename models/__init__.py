@@ -32,6 +32,10 @@ VALID_NAMES = [
     'CLIP:ViT-L/14@336px',
 ]
 
+CHANNELS = {
+    "RN50" : 1024,
+    "ViT-L/14" : 768
+}
 
 # def get_model(name):
 #     assert name in VALID_NAMES
@@ -51,10 +55,10 @@ class DualBranchNetwork(nn.Module):
         
         # Initialize the classification branch (CLIP)
         # self.classification_branch = CLIPModel(name[5:])
-        self.backbone = ResModel()
+        self.backbone = ResModel(name=CHANNELS["RN50"])
         # Initialize the reconstruction branch (ResNet50)
-        self.reconstruction_branch = Reconstruction()
-        self.classification_branch = Classification()
+        self.reconstruction_branch = Reconstruction(name=CHANNELS["RN50"])
+        self.classification_branch = Classification(name=CHANNELS["RN50"])
     
     def forward(self, x):
         # Branch 1: Classification (CLIP)
