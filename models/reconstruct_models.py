@@ -7,11 +7,12 @@ from mmseg.models.decode_heads.ham_head import LightHamHead
     
 # Reconstruction branch using ResNet50
 class ReconstructionModel(nn.Module):
-    def __init__(self, ham_channels):
+    def __init__(self):
         super(ReconstructionModel, self).__init__()
         
         # Load pre-trained ResNet50
-        self.head = LightHamHead()
+        head = LightHamHead()
+        self.head = nn.Sequential(*list(head.children())[:-2])
         
     def forward(self, x):
         # Extract features using ResNet50 backbone
