@@ -29,7 +29,7 @@ class Reconstruction(nn.Module):
     def __init__(self):
         super(Reconstruction, self).__init__()
 
-        self.head = LightHamHead()
+        self.head = LightHamHead(in_channels=CHANNELS["RN50"], channels=3)
         
     def forward(self, x):
         # Extract features using ResNet50 backbone
