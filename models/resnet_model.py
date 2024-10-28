@@ -17,7 +17,7 @@ class ResModel(nn.Module):
         
         resnet = resnet50(pretrained=True)
         self.model = nn.Sequential(*list(resnet.children())[:-2])
-        self.neck = Feature2Pyramid()
+        self.neck = Feature2Pyramid(embed_dim=CHANNELS["RN50"])
 
         print(self.model)
 
