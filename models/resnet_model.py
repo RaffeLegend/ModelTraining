@@ -17,11 +17,11 @@ class ResModel(nn.Module):
         
         resnet = resnet50(pretrained=True)
         self.model = nn.Sequential(*list(resnet.children())[:-2])
-        self.neck = Feature2Pyramid(embed_dim=CHANNELS["RN50"])
+        # self.neck = Feature2Pyramid(embed_dim=CHANNELS["RN50"])
 
-        print(self.model)
+        # print(self.model)
 
     def forward(self, x, return_feature=False):
         features = self.model.forward(x)
-        features = self.neck.forward(features)
+        # features = self.neck.forward(features)
         return features
