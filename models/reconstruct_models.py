@@ -31,7 +31,9 @@ class Reconstruction(nn.Module):
 
         self.head = LightHamHead(
             in_channels=[CHANNELS["RN50"],CHANNELS["RN50"]], 
-            channels=CHANNELS["RN50"], num_classes=3)
+            channels=CHANNELS["RN50"],
+            in_index=[0, 1],
+            num_classes=3)
         
     def forward(self, x):
         # Extract features using ResNet50 backbone
