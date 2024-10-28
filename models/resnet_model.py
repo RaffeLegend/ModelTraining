@@ -1,6 +1,7 @@
 import torch.nn as nn
 
 from .resnet import resnet50
+from mmseg.models.necks.featurepyramid import Feature2Pyramid
 
 CHANNELS = {
     "RN50" : 1024,
@@ -16,9 +17,11 @@ class ResModel(nn.Module):
         
         resnet = resnet50(pretrained=True)
         self.model = nn.Sequential(*list(resnet.children())[:-2])
+        self.neck = Feature2Pyramid()
 
         print(self.model)
 
     def forward(self, x, return_feature=False):
         features = self.model.forward(x)
+        features = self.neck.forward(features)
         return features
