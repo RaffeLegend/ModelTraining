@@ -17,6 +17,8 @@ class ResModel(nn.Module):
         resnet = resnet50(pretrained=True)
         self.model = nn.Sequential(*list(resnet.children())[:-2])
 
+        print(self.model)
+
     def forward(self, x, return_feature=False):
         features = self.model.forward(x)
         return features
