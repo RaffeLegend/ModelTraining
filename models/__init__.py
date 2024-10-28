@@ -58,12 +58,12 @@ class DualBranchNetwork(nn.Module):
         self.backbone = ResModel()
         # Initialize the reconstruction branch (ResNet50)
         self.reconstruction_branch = Reconstruction()
-        self.classification_branch = Classification()
+        self.classification_branch = Classification(num_classes=2)
     
     def forward(self, x):
         # Branch 1: Classification (CLIP)
         feature = self.backbone(x)
-        print(feature)
+        print(feature.shape)
         classification_logits = self.classification_branch(feature)
         
         # Branch 2: Image reconstruction (ResNet50)

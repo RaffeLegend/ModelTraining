@@ -3,7 +3,7 @@ import torch.nn as nn
 from .resnet import resnet50
 
 CHANNELS = {
-    "RN50" : 1024,
+    "RN50" : 7,
     "ViT-L/14" : 768
 }
 
