@@ -30,9 +30,9 @@ class Reconstruction(nn.Module):
         super(Reconstruction, self).__init__()
 
         self.head = LightHamHead(
-            in_channels=[CHANNELS["RN50"],CHANNELS["RN50"]], 
+            in_channels=[CHANNELS["RN50"]] * 256, 
             channels=CHANNELS["RN50"],
-            in_index=[0, 1],
+            in_index=[x for x in range(256)],
             num_classes=3)
         
     def forward(self, x):

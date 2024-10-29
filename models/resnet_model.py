@@ -2,6 +2,7 @@ import torch.nn as nn
 
 from .resnet import resnet50
 from mmseg.models.necks.featurepyramid import Feature2Pyramid
+from mmseg.models.backbones.resnet import ResNet
 
 CHANNELS = {
     "RN50" : 1024,
@@ -15,8 +16,10 @@ class ResModel(nn.Module):
         # self.model, self.preprocess = clip.load(name, device="cpu") # self.preprecess will not be used during training, which is handled in Dataset class 
         # self.fc = nn.Linear( CHANNELS[name], num_classes )
         
-        resnet = resnet50(pretrained=True)
-        self.model = nn.Sequential(*list(resnet.children())[:-2])
+        # resnet = resnet50(pretrained=True)
+        resnet = ResNet()
+        # self.model = nn.Sequential(*list(resnet.children())[:-2])
+        self.model = resnet
         # self.neck = Feature2Pyramid(embed_dim=CHANNELS["RN50"])
 
         # print(self.model)
