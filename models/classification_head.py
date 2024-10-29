@@ -10,8 +10,14 @@ CHANNELS = {
 class Classification(nn.Module):
     def __init__(self, num_classes=1):
         super(Classification, self).__init__()
-        self.fc = nn.Linear( CHANNELS["RN50"], num_classes )
+        self.fc1 = nn.Linear(2048 * 7 *7 , 1024)
+        self.fc2 = nn.Linear(1024, 256)
+        self.fc = nn.Linear(256, num_classes)
+        self.relu = nn.ReLU()
         # self.model = resnet50(pretrained=True)
 
     def forward(self, x, return_feature=False):
-        return self.fc(x[3])
+        x = self.relu(self.fc1(x[3]))
+        x = self.relu(self.fc2(x))
+        x = self.fc(x)
+        return x
