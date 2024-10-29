@@ -60,7 +60,7 @@ class Trainer(BaseModel):
         # self.output = self.model(self.input)
         # self.output = self.output.view(-1).unsqueeze(1)
         self.classification, self.reconstruction = self.model(self.input)
-        self.classification = self.classification.view(-1).unsqueeze(1)
+        # self.classification = self.classification.view(-1).unsqueeze(1)
 
 
     def get_loss(self):
