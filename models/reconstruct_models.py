@@ -36,10 +36,9 @@ class Reconstruction(nn.Module):
             in_index=[0, 1],
             num_classes=3)
                 
-        self.upsample = resize()
     def forward(self, x):
         # Extract features using ResNet50 backbone
         features = self.head(x)  # Output is (batch_size, 2048, 7, 7)
-        features = self.upsample(features, (224, 224))
+        features = resize(features, (224, 224))
 
         return features
