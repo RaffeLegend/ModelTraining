@@ -63,7 +63,7 @@ class DualBranchNetwork(nn.Module):
     def forward(self, x):
         # Branch 1: Classification (CLIP)
         feature = self.backbone(x)
-        print(feature.shape)
+
         classification_logits = self.classification_branch(feature)
         
         # Branch 2: Image reconstruction (ResNet50)

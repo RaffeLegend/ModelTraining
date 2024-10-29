@@ -30,9 +30,9 @@ class Reconstruction(nn.Module):
         super(Reconstruction, self).__init__()
 
         self.head = LightHamHead(
-            in_channels=[CHANNELS["RN50"]] * 256, 
+            in_channels=[256, 512], 
             channels=CHANNELS["RN50"],
-            in_index=[x for x in range(256)],
+            in_index=[0, 1],
             num_classes=3)
         
     def forward(self, x):
@@ -40,5 +40,4 @@ class Reconstruction(nn.Module):
         features = self.head(x)  # Output is (batch_size, 2048, 7, 7)
         
         # Reconstruct image
-        reconstructed_image = self.upsample(features)
-        return reconstructed_image
+        return features

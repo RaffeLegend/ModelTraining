@@ -14,4 +14,4 @@ class Classification(nn.Module):
         # self.model = resnet50(pretrained=True)
 
     def forward(self, x, return_feature=False):
-        return self.fc(x)
+        return self.fc(x[3])
