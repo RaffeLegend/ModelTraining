@@ -18,7 +18,7 @@ class Classification(nn.Module):
 
     def forward(self, x, return_feature=False):
         print(x[3].shape)
-        x = x[3].view(256, -1)
+        x = x[3].view((x[3].shape)[0], -1)
         print(x.shape)
         x = self.relu(self.fc1(x))
         print(x.shape)
