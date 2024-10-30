@@ -17,13 +17,8 @@ class Classification(nn.Module):
         # self.model = resnet50(pretrained=True)
 
     def forward(self, x, return_feature=False):
-        print(x[3].shape)
         x = x[3].view((x[3].shape)[0], -1)
-        print(x.shape)
         x = self.relu(self.fc1(x))
-        print(x.shape)
         x = self.relu(self.fc2(x))
-        print(x.shape)
         x = self.fc(x)
-        print(x.shape)
         return x

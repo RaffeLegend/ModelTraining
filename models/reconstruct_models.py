@@ -10,22 +10,6 @@ CHANNELS = {
     "ViT-L/14" : 768
 }
 # Reconstruction branch using ResNet50
-class ReconstructionModel(nn.Module):
-    def __init__(self):
-        super(ReconstructionModel, self).__init__()
-        
-        # Load pre-trained ResNet50
-        head = LightHamHead(in_channels=CHANNELS["RN50"], channels=3)
-        self.head = nn.Sequential(*list(head.children())[:-2])
-        
-    def forward(self, x):
-        # Extract features using ResNet50 backbone
-        features = self.backbone(x)  # Output is (batch_size, 2048, 7, 7)
-        
-        # Reconstruct image
-        reconstructed_image = self.upsample(features)
-        return reconstructed_image
-    
 class Reconstruction(nn.Module):
     def __init__(self):
         super(Reconstruction, self).__init__()
