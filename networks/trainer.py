@@ -15,7 +15,8 @@ class Trainer(BaseModel):
         self.model = get_model(opt.arch)
         torch.nn.init.normal_(self.model.classification_branch.fc.weight.data, 0.0, opt.init_gain)
 
-        if opt.fix_backbone:
+        # if opt.fix_backbone:
+        if False:
             params = []
             for name, p in self.model.classification_branch.named_parameters():
                 if  name=="fc.weight" or name=="fc.bias": 
