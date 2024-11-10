@@ -135,7 +135,7 @@ class RealFakeDataset(Dataset):
         transformed_img = Image.fromarray(transformed_img)
 
         # 保存图像
-        save_path = "transformed_image" + label + ".jpg"
+        save_path = str(idx)+ "_" + str(label)+ ".jpg"
         transformed_img.save(save_path)
         
         return img, label
