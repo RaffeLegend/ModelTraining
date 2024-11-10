@@ -4,6 +4,7 @@ import torch.nn as nn
 from networks.base_model import BaseModel, init_weights
 import sys
 from models import get_model
+from utils.tools import reconstruct_image
 
 class Trainer(BaseModel):
     def name(self):
@@ -62,6 +63,8 @@ class Trainer(BaseModel):
         # self.output = self.model(self.input)
         # self.output = self.output.view(-1).unsqueeze(1)
         self.classification, self.reconstruction = self.model(self.input)
+        reconstruct_image(self.reconstruction)
+
         # self.classification = self.classification.view(-1).unsqueeze(1)
 
 
