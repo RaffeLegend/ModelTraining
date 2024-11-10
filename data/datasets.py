@@ -126,7 +126,7 @@ class RealFakeDataset(Dataset):
             mean=[-m / s for m, s in zip(MEAN["imagenet"], STD["imagenet"])],
             std=[1 / s for s in STD["imagenet"]]
         )
-        transformed_img = unnormalize(transformed_img)
+        transformed_img = unnormalize(img)
 
         # 转换为 PIL 格式以保存
         # (C, H, W) -> (H, W, C) 并恢复到 0-255 范围
