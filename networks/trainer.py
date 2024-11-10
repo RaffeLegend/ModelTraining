@@ -76,6 +76,7 @@ class Trainer(BaseModel):
     def combined_loss(self):
     # Classification loss (CrossEntropyLoss)
         classification_loss = nn.BCEWithLogitsLoss()(self.classification.squeeze(1), self.label)
+        print(self.classification, self.label, classification_loss)
     
         # Reconstruction loss (MSELoss)
         reconstruction_loss = nn.MSELoss()(self.reconstruction, self.input)
