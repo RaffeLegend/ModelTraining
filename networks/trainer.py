@@ -62,6 +62,7 @@ class Trainer(BaseModel):
     def forward(self):
         # self.output = self.model(self.input)
         # self.output = self.output.view(-1).unsqueeze(1)
+        reconstruct_image(self.input, save_name="input")
         self.classification, self.reconstruction = self.model(self.input)
         reconstruct_image(self.reconstruction)
 

@@ -11,7 +11,7 @@ STD = {
     "clip":[0.26862954, 0.26130258, 0.27577711]
 }
 
-def reconstruct_image(input_tensor):
+def reconstruct_image(input_tensor, save_name="reconstructed_image"):
     img = input_tensor[0]
     unnormalize = transforms.Normalize(
         mean=[-m / s for m, s in zip(MEAN["imagenet"], STD["imagenet"])],
@@ -26,5 +26,5 @@ def reconstruct_image(input_tensor):
     transformed_img = Image.fromarray(transformed_img)
 
     # 保存图像
-    save_path = "reconstructed_image.jpg"
+    save_path = save_name + ".jpg"
     transformed_img.save(save_path)
