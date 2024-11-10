@@ -27,7 +27,7 @@ if __name__ == '__main__':
 
     # record the training summary
     train_writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, "train"))
-    val_writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, "val"))
+    val_writer = SummaryWriter(os.path.join(opt.checkpoints_dir, opt.name, "train"))
 
     # set early stopping strategy   
     early_stopping = EarlyStopping(patience=opt.earlystop_epoch, delta=-0.001, verbose=True)
