@@ -13,7 +13,7 @@ class Trainer(BaseModel):
         super(Trainer, self).__init__(opt)
         self.opt = opt  
         self.model = get_model(opt.arch)
-        torch.nn.init.normal_(self.model.classification_branch.fc.weight.data, 0.0, opt.init_gain)
+        # torch.nn.init.normal_(self.model.classification_branch.fc.weight.data, 0.0, opt.init_gain)
 
         # if opt.fix_backbone:
         if False:
@@ -76,6 +76,7 @@ class Trainer(BaseModel):
         reconstruction_loss = nn.MSELoss()(self.reconstruction, self.input)
     
         # Total loss is the sum of both losses
+        print("classification loss: ", classification_loss, "reconstruction loss: ", reconstruction_loss)
         total_loss = classification_loss + reconstruction_loss
         return total_loss
 

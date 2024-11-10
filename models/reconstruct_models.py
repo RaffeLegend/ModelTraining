@@ -2,7 +2,7 @@ from PIL import Image
 import torch.nn as nn
 from models.resnet import resnet50
 # from .FreqFusion import FreqFusion
-from mmseg.models.decode_heads.ham_head import LightHamHead
+from mmseg.models.decode_heads.ham_head import LightHamHeadFreqAware
 from mmseg.ops.wrappers import resize
 
 CHANNELS = {
@@ -14,7 +14,7 @@ class Reconstruction(nn.Module):
     def __init__(self):
         super(Reconstruction, self).__init__()
 
-        self.head = LightHamHead(
+        self.head = LightHamHeadFreqAware(
             in_channels=[256, 512], 
             channels=CHANNELS["RN50"],
             in_index=[0, 1],
