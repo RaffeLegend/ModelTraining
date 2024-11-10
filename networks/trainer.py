@@ -55,7 +55,7 @@ class Trainer(BaseModel):
     def set_input(self, input):
         self.input = input[0].to(self.device)
         self.label = input[1].to(self.device).float()
-        print(self.input, self.label)
+        # print(self.input, self.label)
 
 
     def forward(self):
