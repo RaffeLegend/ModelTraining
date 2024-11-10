@@ -22,7 +22,7 @@ def reconstruct_image(input_tensor):
     # 转换为 PIL 格式以保存
     # (C, H, W) -> (H, W, C) 并恢复到 0-255 范围
     transformed_img = transformed_img.permute(1, 2, 0).clamp(0, 1)  # 保证值在 [0, 1]
-    transformed_img = (transformed_img * 255).byte().numpy()
+    transformed_img = (transformed_img * 255).byte().cpu().numpy()
     transformed_img = Image.fromarray(transformed_img)
 
     # 保存图像
