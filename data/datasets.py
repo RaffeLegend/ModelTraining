@@ -96,15 +96,19 @@ class RealFakeDataset(Dataset):
 
         print("mean and std stats are from: ", stat_from)
         # if '2b' not in opt.arch:
-        if False:
+        if True:
             print ("using Official CLIP's normalization")
+            # self.transform = transforms.Compose([
+            #     rz_func,
+            #     transforms.Lambda(lambda img: data_augment(img, opt)),
+            #     crop_func,
+            #     flip_func,
+            #     transforms.ToTensor(),
+            #     transforms.Normalize( mean=MEAN[stat_from], std=STD[stat_from] ),
+            # ])
             self.transform = transforms.Compose([
-                rz_func,
-                transforms.Lambda(lambda img: data_augment(img, opt)),
-                crop_func,
-                flip_func,
                 transforms.ToTensor(),
-                transforms.Normalize( mean=MEAN[stat_from], std=STD[stat_from] ),
+                transforms.Normalize(mean=MEAN[stat_from], std=STD[stat_from]),
             ])
         else:
             print ("Using CLIP 2B transform")
