@@ -95,7 +95,8 @@ class RealFakeDataset(Dataset):
         stat_from = "imagenet" if opt.arch.lower().startswith("imagenet") else "clip"
 
         print("mean and std stats are from: ", stat_from)
-        if '2b' not in opt.arch:
+        # if '2b' not in opt.arch:
+        if False:
             print ("using Official CLIP's normalization")
             self.transform = transforms.Compose([
                 rz_func,
