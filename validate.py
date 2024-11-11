@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.metrics import average_precision_score, precision_recall_curve, accuracy_score
 from torch.utils.data import Dataset
 import sys
+sys.path.insert(0, "../mmsegmentation")
 from models import get_model
 from PIL import Image 
 import pickle
@@ -274,7 +275,7 @@ if __name__ == '__main__':
 
     model = get_model(opt.arch)
     state_dict = torch.load(opt.ckpt, map_location='cpu')
-    model.fc.load_state_dict(state_dict)
+    model.load_state_dict(state_dict)
     print ("Model loaded..")
     model.eval()
     model.cuda()
