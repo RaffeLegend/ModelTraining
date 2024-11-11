@@ -192,7 +192,7 @@ class RealFakeDataset(Dataset):
         for i in fake_list:
             self.labels_dict[i] = 1
 
-        stat_from = "imagenet" if arch.lower().startswith("imagenet") else "clip"
+        stat_from = "imagenet"
         self.transform = transforms.Compose([
             transforms.CenterCrop(224),
             transforms.ToTensor(),
