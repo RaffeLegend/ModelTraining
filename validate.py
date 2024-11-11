@@ -275,7 +275,7 @@ if __name__ == '__main__':
 
     model = get_model(opt.arch)
     state_dict = torch.load(opt.ckpt, map_location='cpu')
-    model.load_state_dict(state_dict)
+    model.load_state_dict(state_dict["model"])
     print ("Model loaded..")
     model.eval()
     model.cuda()
